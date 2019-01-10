@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Bookshelf from './components/Bookshelf';
@@ -93,6 +94,10 @@ const wholeShelf = [{
   "id":"sJf1vQAACAAJ",
   "shelf":"currentlyReading"
 }];
+=======
+// import * as BooksAPI from './BooksAPI'
+import './App.css'
+>>>>>>> 9ed82927fca520f2cf8fd8069cb3f1ea8930fa17
 
 class BooksApp extends React.Component {
   state = {
@@ -105,6 +110,7 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
+<<<<<<< HEAD
   componentWillMount(){
 
     const response = BooksAPI.getAll();
@@ -122,6 +128,11 @@ class BooksApp extends React.Component {
       
       <div className="app">
 
+=======
+  render() {
+    return (
+      <div className="app">
+>>>>>>> 9ed82927fca520f2cf8fd8069cb3f1ea8930fa17
         {this.state.showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
@@ -150,9 +161,12 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
+<<<<<<< HEAD
               <Bookshelf groupOfBooks={wholeShelf}/>
 
 
+=======
+>>>>>>> 9ed82927fca520f2cf8fd8069cb3f1ea8930fa17
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
