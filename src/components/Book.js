@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Book extends Component {
 
     state = {
-        shelf: this.props
+        shelf: this.props.metaData.shelf
       }
 
 
@@ -11,7 +11,6 @@ class Book extends Component {
     
         console.log("PROPS each BOOKS", this.props )
     }
-
 
     render() {
 
@@ -27,21 +26,37 @@ class Book extends Component {
               style={{
               width: 128,
               height: 193,
-              backgroundImage: 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")'
+              backgroundImage: `url(${me.imageLinks.thumbnail})`
             }}></div>
             <div className="book-shelf-changer">
               <select>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
-                <option value="wantToRead">Want to Read</option>
+                <option value="wantToRead" onSelect={() => this.setState({ shelf: "value" })} >Want to Read</option>
                 <option value="read">Read</option>
                 <option value="none">None</option>
               </select>
+              <div className="extra content">
+                    <div className="ui four buttons">
+                        <button className="ui green basic button" onClick={() => this.setState({ shelf: "currentlyReading" })}>
+                        <i aria-hidden="true" title="Currently Reading" className="book icon">Reading</i>
+                        </button>
+                        <button className="ui red basic button" onClick={() => this.setState({ shelf: "wantToRead" })}>
+                        <i aria-hidden="true" title="Want to Read" className="heart icon">Want to read</i>
+                        </button>
+                        <button className="ui red basic button" onClick={() => this.setState({ shelf: "read" })}>
+                        <i aria-hidden="true" title="Read" className="checkmark icon">Read</i>
+                        </button>
+                        <button className="ui red basic button" onClick={() => this.setState({ shelf: "none" })}>
+                        <i aria-hidden="true" title="Clear" className="refresh icon">Clear</i>
+                        </button>
+                    </div>
+                </div>
             </div>
           </div>
           <div className="book-title">{me.title}</div>
           <div className="book-authors">{me.subtitle}</div>
-          <div className="book-shelf">Shelf: {me.shelf}</div>
+          <div className="book-shelf">Shelf: {this.state.shelf}</div>
         </div>
       </li>
 
