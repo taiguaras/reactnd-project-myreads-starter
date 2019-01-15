@@ -18,6 +18,43 @@ class BooksApp extends React.Component {
     this.setState({ books });
   }
 
+  updateShelf = (bookTochange, shelf) => {
+    // Init
+    let isNewBookOnShelf = false;
+    const { books, searchResults } = this.state;
+
+    // Update book on API
+    BooksAPI.update(bookTochange, shelf).then((data) => {
+      // Check book on shelf and prepare book data
+      searchResults.forEach((book) => {
+        if (book.id === bookTochange.id) {
+          book.shelf = shelf;
+        }
+      })
+
+      books.map((book) => {
+        if (book.id === bookTochange.id) {
+          book.shelf = shelf;
+          isNewBookOnShelf = true;
+        }
+        return book;
+      });
+
+      // If is new on shelf (Comming from search)
+      if (isNewBookOnShelf === false) {
+        bookTochange.shelf = shelf;
+        books.push(bookTochange);
+      }
+
+      // Update book data
+      this.setState({
+        books,
+        searchResults
+      });
+    })
+  }
+
+
   render() {
 
     const { books } = this.state;
@@ -57,9 +94,9 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>      
 
-                <Manager books={books} shelfName={"currentlyReading"} shelfDisplay={"Currently Reading"}/>
-                <Manager books={books} shelfName={"wantToRead"} shelfDisplay={"Want to Read"}/>
-                <Manager books={books} shelfName={"read"} shelfDisplay={"Read"}/>
+                <Manager books={books} shelfName={"currentlyReading"} shelfDisplay={"Currently Reading"} onUpdateShelf={this.updateShelf} />
+                <Manager books={books} shelfName={"wantToRead"} shelfDisplay={"Want to Read"} onUpdateShelf={this.updateShelf}/>
+                <Manager books={books} shelfName={"read"} shelfDisplay={"Read"} onUpdateShelf={this.updateShelf}/>
 
               </div>
             </div>
