@@ -87,7 +87,6 @@ body, .app {
 
 .search-books-input-wrapper {
   flex: 1;
-  background: #e9e;
 }
 
 .search-books-bar input {
@@ -136,11 +135,6 @@ button:active {
 .books-grid li {
   padding: 10px 15px;
   text-align: left;
-}
-
-.book {
-  width: 180px;
-  margin: 20px;
 }
 
 .book-title,
@@ -228,9 +222,14 @@ button:active {
   justify-content: center;
 }
 
+.book {
+  width: 180px;
+  margin: 10px 10px 10px 10px;
+}
+
 div.book{
-  border: solid 1px black;
-  padding: 5px;
+  border: solid 2px lightslategray;
+  padding: 15px;
   border-radius: 5px;
 
   display: flex;

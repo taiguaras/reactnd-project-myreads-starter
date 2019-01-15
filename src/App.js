@@ -130,8 +130,7 @@ class BooksApp extends React.Component {
 
     return (
 
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-
+      <BrowserRouter>
       <Switch>
           <Route path="/" exact={true} render={() => (
             <Main books={books} onUpdateShelf={this.updateShelf} />
