@@ -14,17 +14,15 @@ class Bookshelf extends Component {
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{shelfDisplay}</h2>
                 <div className="bookshelf-books">
-                    <ol className="books-grid">
+                    <div className="books-grid">
 
                     {books.map((book) => (
-                        <div key={book.id}>
 
                         <Book metaData={book} key={book.id} onUpdateShelf={this.props.onUpdateShelf} book={books}/>                        
                           
-                        </div>
                      ))}                     
 
-                    </ol>
+                    </div>
                 </div>
                 </div>
                 )

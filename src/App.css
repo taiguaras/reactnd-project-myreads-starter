@@ -139,7 +139,8 @@ button:active {
 }
 
 .book {
-  width: 140px;
+  width: 180px;
+  margin: 20px;
 }
 
 .book-title,
@@ -222,3 +223,29 @@ button:active {
     transition: box-shadow .1s ease,transform .1s ease,-webkit-box-shadow .1s ease,-webkit-transform .1s ease;
     z-index: '';
 }
+
+.book-top{
+  justify-content: center;
+}
+
+div.book{
+  border: solid 1px black;
+  padding: 5px;
+  border-radius: 5px;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+button.button {
+  width: 50%;
+  height: 50%;
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+
+
+

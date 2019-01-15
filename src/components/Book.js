@@ -19,50 +19,36 @@ class Book extends Component {
       const {metaData} = this.props;
 
     return (    
-    <li>
-        <div className="book">
+           <div className="book">
           <div className="book-top">
             <div
               className="book-cover"
               style={{
-              width: 128,
-              height: 193,
+              width: `100%`,
+              height: `100%`,
+              backgroundSize: 'cover',
               backgroundImage: `url(${metaData.imageLinks.thumbnail})`}}>
-            </div>
-
-            
-            <div className="book-shelf-changer">
-              <select>
-                <option value="move" disabled>Move to...</option>
-                <option value="currentlyReading"onSelect={event => this.handleMoveBookToShelf(event, 'currentlyReading', metaData)}>Currently Reading</option>
-                <option value="wantToRead" onSelect={event => this.handleMoveBookToShelf(event, 'wantToRead', metaData)}>Want to Read</option>
-                <option value="read" onSelect={event => this.handleMoveBookToShelf(event, 'read', metaData)}>Read</option>
-                <option value="none">None</option>
-              </select>
             </div>
 
           </div>
           <div className="book-title">{metaData.title}</div>
           <div className="book-authors">{metaData.subtitle}</div>
           <div className="book-shelf">Shelf: {metaData.shelf}</div>
-          <div className="extra content">
-          <div className="ui four buttons">
-            <button className="ui green basic button" onClick={event => this.handleMoveBookToShelf(event, 'currentlyReading', metaData)}>
-            <i aria-hidden="true" title="Currently Reading" className="book icon">Currently Reading</i>
+          <div className="extra">          
+            <button className="button" onClick={event => this.handleMoveBookToShelf(event, 'currentlyReading', metaData)}>
+            <i aria-hidden="true" title="Currently Reading" className="book icon"></i><p>Currently Reading</p>
             </button>
-            <button className="ui red basic button" onClick={event => this.handleMoveBookToShelf(event, 'wantToRead', metaData)}>
-            <i aria-hidden="true" title="Want to Read" className="heart icon">Want to Read</i>
+            <button className="button" onClick={event => this.handleMoveBookToShelf(event, 'wantToRead', metaData)}>
+            <i aria-hidden="true" title="Want to Read" className="heart icon"></i><p>Want to Read</p>
             </button>
-            <button className="ui red basic button" onClick={event => this.handleMoveBookToShelf(event, 'read', metaData)}>
-            <i aria-hidden="true" title="Read" className="checkmark icon">Read</i>
+            <button className="button" onClick={event => this.handleMoveBookToShelf(event, 'read', metaData)}>
+            <i aria-hidden="true" title="Read" className="checkmark icon"></i><p>Read</p>
             </button>
-            <button className="ui red basic button">
-            <i aria-hidden="true" title="Clear" className="refresh icon">Clear</i>
+            <button className="button" onClick={event => this.handleMoveBookToShelf(event, 'none', metaData)}>
+            <i aria-hidden="true" title="Clear" className="refresh icon"></i><p>Clear</p>
             </button>
           </div>
-        </div>
-        </div>
-      </li>
+        </div>        
 
         );
     }
