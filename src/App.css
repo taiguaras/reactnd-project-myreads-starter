@@ -137,9 +137,21 @@ button:active {
   text-align: left;
 }
 
-.book-title,
+.book-title {
+  font-size: 1.5em;
+}
+
+.book-subtitle {
+  font-size: 0.9em;
+}
+
 .book-authors {
-  font-size: 0.8em;
+  font-size: 1.2em;
+  padding: 5px;
+}
+
+p.author{
+  margin-bottom: 2px;
 }
 
 .book-title {
@@ -223,7 +235,7 @@ button:active {
 }
 
 .book {
-  width: 180px;
+  width: 240px;
   margin: 10px 10px 10px 10px;
 }
 
@@ -243,6 +255,12 @@ button.button {
   padding: 10px;
   background-color: transparent;
   border-radius: 5px;
+}
+
+
+button.ui.icon.left.labeled{
+  width: 100%;
+  margin-bottom: 3px;
 }
 
 
