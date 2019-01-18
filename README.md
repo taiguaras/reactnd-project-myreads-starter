@@ -13,10 +13,10 @@ To get the application running right away:
 A simple application where you can track and plan your readings in a small dashboard.
 You can categorize books in four kinds of status:
 
-* [`Currently Reading`](#CurrentlyReading)
-* [`Want To Read`](#WantToRead)
-* [`Read`](#Read)
-* [`None`](#None)
+* `Currently Reading`
+* `Want To Read`
+* `Read`
+* `None`
 
 ## Search
 It is also possible to add a new book to any of those status after you locate it through the search method.
