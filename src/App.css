@@ -10,6 +10,10 @@ body, .app {
   background: white;
 }
 
+.page{
+  margin-top: 70px;
+}
+
 /* main page */
 
 .list-books-title {
@@ -74,6 +78,9 @@ body, .app {
 
 
 /* search page */
+.search-books{
+  padding: 30px;
+}
 
 .search-books-bar {
   position: fixed;

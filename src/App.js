@@ -8,6 +8,7 @@ import Search from './pages/Search';
 
 import * as BooksAPI from './BooksAPI'
 import './App.css'
+import Navbar from './components/Navbar';
 // 
 
 class BooksApp extends React.Component { 
@@ -123,18 +124,23 @@ class BooksApp extends React.Component {
   render() {
 
     const { books, query, searchResults, isLoadingSearch } = this.state;
-    console.log("log do app BK",{books}); 
 
     return (
 
       <BrowserRouter>
-      <Switch>
-          <Route path="/" exact={true} render={() => (
-            <Main books={books} onUpdateShelf={this.updateShelf} />
+        <Switch>
+        
+          <Route path="/" exact={true} render={() => ( 
+            <div className="layout">
+              <Navbar/>
+              <Main books={books} onUpdateShelf={this.updateShelf} /> 
+            </div>
           )} />
 
           <Route path="/search" render={() => (
-            <Search books={searchResults} query={query} loading={isLoadingSearch} onUpdateShelf={this.updateShelf} onSearhTerm={this.searchTerm} />
+            <div className="layout">
+              <Search books={searchResults} query={query} loading={isLoadingSearch} onUpdateShelf={this.updateShelf} onSearhTerm={this.searchTerm} />
+            </div>
           )} />
           </Switch>
       </BrowserRouter>

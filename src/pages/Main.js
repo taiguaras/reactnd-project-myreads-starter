@@ -10,20 +10,17 @@ class Main extends Component {
 
         return (
 
+         <div className="page">
             <div className="list-books">          
-                <div className="list-books-title">
-                    <h1>MyReads</h1>
-                </div>
                 <div className="list-books-content">
-                    <div>   
-                        <Manager books={books} shelfName={"currentlyReading"} shelfDisplay={"Currently Reading"} onUpdateShelf={onUpdateShelf} />
-                        <Manager books={books} shelfName={"wantToRead"} shelfDisplay={"Want to Read"} onUpdateShelf={onUpdateShelf}/>
-                        <Manager books={books} shelfName={"read"} shelfDisplay={"Read"} onUpdateShelf={onUpdateShelf}/>
-                    </div>
+                    <Manager books={books} shelfName={"currentlyReading"} shelfDisplay={"Currently Reading"} onUpdateShelf={onUpdateShelf} />
+                    <Manager books={books} shelfName={"wantToRead"} shelfDisplay={"Want to Read"} onUpdateShelf={onUpdateShelf}/>
+                    <Manager books={books} shelfName={"read"} shelfDisplay={"Read"} onUpdateShelf={onUpdateShelf}/>
                 </div>
                 <div className="open-search">
                   <Link to={`/search`}> <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button></Link>
                 </div>
+            </div>
           </div>
 
         );

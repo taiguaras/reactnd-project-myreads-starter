@@ -20,6 +20,7 @@ class Search extends Component {
 
 
         return (
+            <div className="page">
                 <div className="search-books">
                     <div className="search-books-bar">
                     <Link to={`/`}><button className="close-search">Close</button></Link>
@@ -36,12 +37,8 @@ class Search extends Component {
 
                     </div>
                     </div>
-                    <div className="search-books-results">
-                        <ol className="books-grid"></ol>
-                    </div>
                             <div id="search-result-container">
-                                <h3>Search result</h3>
-                                
+                                <h3>Search results</h3>                                
                                 
                                 <Bookshelf books={books} onUpdateShelf={onUpdateShelf} />
                                 {(loading === true) &&
@@ -50,10 +47,11 @@ class Search extends Component {
                                     </div>
                                 }
                                 {(books.length === 0 && loading === false) &&
-                                    <div className="no-results">No results.</div>
+                                    <div className="no-results">No results found.</div>
                                 }
                             </div>
                 </div>
+            </div>
         );
     }
 
