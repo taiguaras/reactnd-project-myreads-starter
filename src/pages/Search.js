@@ -9,8 +9,8 @@ class Search extends Component {
         books: PropTypes.array.isRequired,
     }
 
-    searchTerm = (event) => {
-        this.props.onSearhTerm(event.target.value);
+    SearchBook = (event) => {
+        this.props.onSearchBook(event.target.value);
     }
 
 
@@ -33,7 +33,7 @@ class Search extends Component {
                         However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                         you don't find a specific author or title. Every search is limited by search terms.
                         */}
-                        <input type="text" placeholder="Search by title or author" value={query} onChange={event => this.searchTerm(event)}/>
+                        <input type="text" placeholder="Search by title or author" value={query} onChange={event => this.SearchBook(event)}/>
 
                     </div>
                     </div>

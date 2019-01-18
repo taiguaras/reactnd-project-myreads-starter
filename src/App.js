@@ -1,15 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-// Pages
 import Main from './pages/Main';
 import Search from './pages/Search';
-
-
+import Navbar from './components/Navbar';
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import Navbar from './components/Navbar';
-// 
 
 class BooksApp extends React.Component { 
 
@@ -17,7 +12,7 @@ class BooksApp extends React.Component {
     books: [],
     query: '',
     searchResults: [],
-    isLoadingSearch: false
+    SearchIsLoading: false
   }
 
   async componentDidMount() {
@@ -26,30 +21,28 @@ class BooksApp extends React.Component {
     this.setState({ books });
   }
 
-  updateShelf = (bookTochange, shelf) => {
-    let isNewBookOnShelf = false;
+  updateShelf = (SelectedBook, shelf) => {
+    let isNew = false;
     const { books, searchResults } = this.state;
 
-    //Send Update API
-    BooksAPI.update(bookTochange, shelf).then(() => {
-      // Check book shelf and handle book data
+    BooksAPI.update(SelectedBook, shelf).then(() => {
       searchResults.forEach((book) => {
-        if (book.id === bookTochange.id) {
+        if (book.id === SelectedBook.id) {
           book.shelf = shelf;
         }
       })
 
       books.map((book) => {
-        if (book.id === bookTochange.id) {
+        if (book.id === SelectedBook.id) {
           book.shelf = shelf;
-          isNewBookOnShelf = true;
+          isNew = true;
         }
         return book;
       });
 
-      if (isNewBookOnShelf === false) {
-        bookTochange.shelf = shelf;
-        books.push(bookTochange);
+      if (isNew === false) {
+        SelectedBook.shelf = shelf;
+        books.push(SelectedBook);
       }
 
       this.setState({
@@ -59,56 +52,43 @@ class BooksApp extends React.Component {
     })
   }
 
-  searchTerm = (searchTerm) => {
-    // Reset
+  SearchBook = (SearchBook) => {
     this.setState({
       searchResults: [],
-      query: searchTerm,
-      isLoadingSearch: false
+      query: SearchBook,
+      SearchIsLoading: false
     });
 
-    // Clear debouncing
     clearTimeout(this.debouncing);
 
-    // Check term
-    if (searchTerm !== '') {
-      // Show loading
+    if (SearchBook !== '') {
       this.setState({
-        isLoadingSearch: true
+        SearchIsLoading: true
       });
 
-      // Request search
       this.debouncing = setTimeout(() => {
-        BooksAPI.search(this.state.query).then((booksFound) => {
-          // Hide loading
+        BooksAPI.search(this.state.query).then((Results) => {
           this.setState({
-            isLoadingSearch: false
+            SearchIsLoading: false
           });
 
-          // If it has results
-          if (booksFound.length > 0) {
-            // Iterate result
-            const booksFoundFiltered = booksFound.map((bookFound) => {
-              // Set shelf as 'None'
-              bookFound.shelf = 'none';
+          if (Results.length > 0) {
+            const bookResultMap = Results.map((bookItem) => {
+              bookItem.shelf = 'none';
 
-              // Match books
               this.state.books.forEach((book) => {
-                if (bookFound.id === book.id) {
-                  // Set correct shelf
-                  bookFound.shelf = book.shelf;
+                if (bookItem.id === book.id) {
+                  bookItem.shelf = book.shelf;
                 }
               })
 
-              return bookFound;
+              return bookItem;
             });
 
-            // Update search result (it has results)
             this.setState({
-              searchResults: booksFoundFiltered
+              searchResults: bookResultMap
             });
           } else {
-            // Update search result (no results)
             this.setState({
               searchResults: []
             });
@@ -123,7 +103,7 @@ class BooksApp extends React.Component {
 
   render() {
 
-    const { books, query, searchResults, isLoadingSearch } = this.state;
+    const { books, query, searchResults, SearchIsLoading } = this.state;
 
     return (
 
@@ -139,7 +119,7 @@ class BooksApp extends React.Component {
 
           <Route path="/search" render={() => (
             <div className="layout">
-              <Search books={searchResults} query={query} loading={isLoadingSearch} onUpdateShelf={this.updateShelf} onSearhTerm={this.searchTerm} />
+              <Search books={searchResults} query={query} loading={SearchIsLoading} onUpdateShelf={this.updateShelf} onSearchBook={this.SearchBook} />
             </div>
           )} />
           </Switch>
